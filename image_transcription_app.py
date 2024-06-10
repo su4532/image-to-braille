@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 from openai import OpenAI
 import base64
+import os
 import io
 import louis
 
@@ -40,8 +41,9 @@ def text_to_braille(text):
 def braille_to_text(braille):
     return louis.backTranslateString(["braille-patterns.cti", "en-us-g2.ctb"], braille)
 
+openai_api_key = os.environ.get("OPENAI_API_KEY")
 
-client = OpenAI(api_key="sk-proj-lkykaHkX6lNZxxpd1viCT3BlbkFJ17cFSBytIyoXJ9o4Kihb")
+client = OpenAI(api_key=openai_api_key)
 MODEL = "gpt-4o"
 
 
